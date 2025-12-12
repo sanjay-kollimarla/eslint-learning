@@ -30,6 +30,8 @@ class ServerManager {
             }
             console.log(`Server listening on port: ${PORT}`);
         });
+
+        process.on('SIGINT', this.shutdown);
     }
 
     shutdown() {
