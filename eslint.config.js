@@ -1,11 +1,20 @@
 import js from "@eslint/js";
 import globals from "globals";
 import { defineConfig } from "eslint/config";
+import customRules from "./rules/index.js";
+import rulesData from "./data/rules/index.js";
 
 export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs}"],
-    plugins: { js },
+    plugins: {
+      js,
+      custom: {
+        rules: {
+          "avoid-names": customRules.avoidNames,
+        },
+      },
+    },
     extends: ["js/recommended"],
     languageOptions: {
       globals: {
@@ -14,7 +23,7 @@ export default defineConfig([
       },
     },
     rules: {
-      "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "no-unused-vars": "error",
       "no-undef": "error",
       "semi": ["error", "always"],
       "quotes": ["error", "double"],
@@ -34,6 +43,8 @@ export default defineConfig([
       "computed-property-spacing": ["error", "never"],
       "func-call-spacing": ["error", "never"],
       "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],
+      "custom/avoid-names": ["error", { names: rulesData.avoidNames.namesToAvoid, caseInsensitive: true }],
     },
+    ignores: ["node_modules/**", "dist/**", "build/**"],
   },
 ]);
