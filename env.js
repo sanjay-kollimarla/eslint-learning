@@ -10,7 +10,7 @@ const config = dotenv.config({
   path: path.resolve(__dirname, ".env"),
   debug: false,
   encoding: "utf8",
-  quiet: false
+  quiet: false,
 });
 
 export default config;
