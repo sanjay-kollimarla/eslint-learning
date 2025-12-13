@@ -15,7 +15,7 @@
     "source.fixAll.stylelint": "explicit",
     "source.fixAll.prettier": "explicit",
     "source.sortImports": "explicit",
-    "source.addMissingImports": true,
+    "source.addMissingImports": "explicit",
     "source.removeUnusedImports": "explicit",
     "source.fixAll": "explicit",
     "source.fixAll.autoFixable": "explicit",
