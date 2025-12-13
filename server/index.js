@@ -1,4 +1,4 @@
-const { ServerManager } = require("./server");
+import { ServerManager } from "./server.js";
 
 const server = new ServerManager();
 server.start();

@@ -1,4 +1,4 @@
-const serverConfig = {
+export default {
     onShutdown: (server) => {
         console.log('Shutting down: stop accepting new connections');
         server.close(() => {
@@ -7,5 +7,3 @@ const serverConfig = {
         });
     }
 };
-
-module.exports = serverConfig;

@@ -1,17 +1,19 @@
-require("../env");
-const http = require("http");
-
-const app = require('../app');
-const { onShutdown } = require("./config");
+import "../env.js";
+import http from "http";
+import app from "../app.js";
+import ServerConfig from "./config.js";
 
 const { PORT } = process.env;
 
-class ServerManager {
+export class ServerManager {
     constructor() {
         this.app = app;
         this.server = null;
         this.isShuttingDown = false;
         this.connections = new Set();
+
+        // bind shutdown handler to keep correct `this`
+        this.shutdown = this.shutdown.bind(this);
     }
 
     start() {
@@ -37,8 +39,6 @@ class ServerManager {
     shutdown() {
         if (this.isShuttingDown) return;
         this.isShuttingDown = true;
-        onShutdown(this.server);
+        ServerConfig.onShutdown(this.server);
     }
 }
-
-module.exports = { ServerManager };

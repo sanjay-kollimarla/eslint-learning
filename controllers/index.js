@@ -1,5 +1,3 @@
-const healthController = require("./healthController");
+import healthController from "./healthController.js";
 
-module.exports = {
-    healthController,
-}
+export { healthController };

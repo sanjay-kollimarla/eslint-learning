@@ -1,6 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-const { authRouter, router } = require("./routes");
+import express from "express";
+import cors from "cors";
+import { authRouter, router } from "./routes/index.js";
 
 const app = express();
 
@@ -12,4 +12,4 @@ app.use("/", (_, res) => res.send("Welcome message from server"));
 app.use("/auth", authRouter);
 app.use("/api", router);
 
-module.exports = app;
+export default app;
