@@ -1,5 +1,9 @@
 import avoidNames from "./avoid-names.js";
 
-export default {
-  avoidNames,
+const customPlugin = {
+  rules: {
+    ...avoidNames,
+  },
 };
+
+export default customPlugin;

@@ -4,8 +4,21 @@
  * Production-grade: strict schema, selective AST matching, messageIds,
  * no false positives (ignores property access), optimized for performance.
  */
+export const ruleName = "avoid-names";
 
-export default {
+export const namesToAvoid = [
+  "foo",
+  "bar",
+  "baz",
+  "temp",
+  "data",
+  "dist",
+  "obj",
+  "item",
+  "value",
+];
+
+const rule =  {
   meta: {
     type: "suggestion",
     docs: {
@@ -16,27 +29,30 @@ export default {
       avoid: "Restricted identifier name - '{{name}}'.",
     },
     schema: [
-      {
-        type: "object",
-        required: ["names"],
-        properties: {
-          names: {
-            type: "array",
-            items: { type: "string" },
-            uniqueItems: true,
-            minItems: 1,
-          },
-          caseInsensitive: {
-            type: "boolean",
-          },
-        },
-        additionalProperties: false,
-      },
+      // {
+      //   type: "object",
+      //   required: ["names"],
+      //   properties: {
+      //     names: {
+      //       type: "array",
+      //       items: { type: "string" },
+      //       uniqueItems: true,
+      //       minItems: 1,
+      //     },
+      //     caseInsensitive: {
+      //       type: "boolean",
+      //     },
+      //   },
+      //   additionalProperties: false,
+      // },
     ],
   },
 
   create(context) {
-    const options = context.options[0] || {};
+    const options = {
+      names: namesToAvoid,
+      caseInsensitive: false,
+    };
 
     const bannedNamesRaw = options.names || [];
     const caseInsensitive = options.caseInsensitive === true;
@@ -118,4 +134,8 @@ export default {
       },
     };
   },
+};
+
+export default {
+  [ruleName]: rule,
 };
